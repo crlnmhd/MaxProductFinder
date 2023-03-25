@@ -70,4 +70,13 @@ TEST(MatrixTest, TestThrowsWhenMatrixDoesNotHaveEqualRowLengths) {
   EXPECT_THROW(Matrix({{1, 2, 3}, {4, 5}}), std::invalid_argument);
 }
 
+TEST(MatrixTest, TestNumRowsReturnsNumberOfRows) {
+  EXPECT_EQ(Matrix({{1, 3}, {1, 2}, {1, 2}}).num_rows(), 3);
+  EXPECT_EQ(Matrix().num_rows(), 0);
+}
+TEST(MatrixTest, TestNumElementsReturnsNumberOfElements) {
+  EXPECT_EQ(Matrix({{1, 3, 2}, {4, 5, 6}}).num_rows(), 2);
+  EXPECT_EQ(Matrix().num_rows(), 0);
+}
+
 }  // namespace

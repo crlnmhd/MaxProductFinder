@@ -31,6 +31,16 @@ class Matrix {
                       other.data.cend());
   }
 
+  std::size_t num_rows() const { return data.size(); }
+
+  std::size_t num_elements() const {
+    if (data.size() == 0) {
+      return 0;
+    } else {
+      return data[0].size();
+    }
+  }
+
   std::vector<int> get_elemnents_in_direction(
       matrix::Point position, std::size_t num_elemns,
       matrix::Direction direction) const {
