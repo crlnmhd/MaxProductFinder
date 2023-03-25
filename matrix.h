@@ -2,6 +2,7 @@
 #include <cstddef>
 #include <iterator>
 #include <map>
+#include <optional>
 #include <stdexcept>
 #if !defined(MATRIX_H_)
 #define MATRIX_H_
@@ -41,14 +42,13 @@ class Matrix {
     }
   }
 
-  std::vector<int> get_elemnents_in_direction(
+  std::optional<std::vector<int>> get_elements_in_direction(
       matrix::Point position, std::size_t num_elemns,
       matrix::Direction direction) const {
     const auto [x_increment, y_increment] = x_and_y_increment(direction);
     if (position.second + y_increment * num_elemns > data.size() ||
         position.first + x_increment * num_elemns > data[0].size()) {
-      throw std::out_of_range(
-          "Could not get elements from matrix. Out of range.");
+      return {};
     }
     std::vector<int> result;
     for (std::size_t i{0}; i < num_elemns; ++i) {

@@ -16,14 +16,17 @@ TEST(MatrixTest, TestGetElementsFromTheOrigin) {
 
   matrix::Point origin{0, 0};
   EXPECT_EQ(
-      matrix.get_elemnents_in_direction(origin, 3, matrix::Direction::Right),
+      matrix.get_elements_in_direction(origin, 3, matrix::Direction::Right)
+          .value(),
       three_to_the_right);
+  EXPECT_EQ(matrix.get_elements_in_direction(origin, 2, matrix::Direction::Down)
+                .value(),
+            two_down);
   EXPECT_EQ(
-      matrix.get_elemnents_in_direction(origin, 2, matrix::Direction::Down),
-      two_down);
-  EXPECT_EQ(matrix.get_elemnents_in_direction(origin, 2,
-                                              matrix::Direction::DownAndRight),
-            two_down_and_to_the_right);
+      matrix
+          .get_elements_in_direction(origin, 2, matrix::Direction::DownAndRight)
+          .value(),
+      two_down_and_to_the_right);
 }
 TEST(MatrixTest, TestGetElementsFromPoint) {
   Matrix matrix{{{1, 2, 3, 4}, {5, 6, 7, 8}}};
@@ -32,15 +35,25 @@ TEST(MatrixTest, TestGetElementsFromPoint) {
   std::vector<int> two_to_the_right{7, 8};
   std::vector<int> one_down{7};
 
-  EXPECT_EQ(
-      matrix.get_elemnents_in_direction(point, 2, matrix::Direction::Right),
-      two_to_the_right);
-  EXPECT_EQ(
-      matrix.get_elemnents_in_direction(point, 1, matrix::Direction::Down),
-      one_down);
+  EXPECT_EQ(matrix.get_elements_in_direction(point, 2, matrix::Direction::Right)
+                .value(),
+            two_to_the_right);
+  EXPECT_EQ(matrix.get_elements_in_direction(point, 1, matrix::Direction::Down)
+                .value(),
+            one_down);
 }
 
-TEST(MatrixTest, TestThrowsWhenOutOfBounds) { EXPECT_EQ(true, true); }
+TEST(MatrixTest, TestReturnsNulloptWhenOutOfBounds) {
+  Matrix matrix({{1, 2, 3}, {4, 5, 6}});
+  matrix::Point origin{0, 0};
+
+  EXPECT_FALSE(
+      matrix.get_elements_in_direction(origin, 4, matrix::Direction::Right));
+  EXPECT_FALSE(
+      matrix.get_elements_in_direction(origin, 4, matrix::Direction::Down));
+  EXPECT_FALSE(matrix.get_elements_in_direction(
+      origin, 4, matrix::Direction::DownAndRight));
+};
 
 TEST(MatrixTest, TestEqualityComparisonReturnsTrueForEqualMatrices) {
   Matrix matrix{{{0, 1, 2, 3}, {4, 5, 6, 7}}};
