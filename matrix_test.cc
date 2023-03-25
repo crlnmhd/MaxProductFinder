@@ -2,6 +2,8 @@
 
 #include <gtest/gtest.h>
 
+#include <stdexcept>
+
 #include "gtest/gtest.h"
 
 namespace {
@@ -54,9 +56,9 @@ TEST(MatrixTest, TestEqualityComparisonReturnsFalseForNonEqualMatrices) {
 
   Matrix last_element_differ{{{0, 1, 2}, {3, 4, 99}}};
   Matrix missing_last_row{{{0, 1, 2}}};
-  Matrix extra_row{{{0, 1, 2, 3}, {4, 5, 6}, {4, 5, 6}}};
+  Matrix extra_row{{{0, 1, 2}, {4, 5, 6}, {4, 5, 6}}};
   Matrix extra_elements_in_row{{{0, 1, 2, 3}, {3, 5, 4, 5}}};
-  Matrix missing_elements_in_row{{{0, 1}, {3, 5, 5}}};
+  Matrix missing_elements_in_row{{{0, 1}, {3, 5}}};
 
   EXPECT_NE(matrix, last_element_differ);
   EXPECT_NE(matrix, missing_last_row);
@@ -64,4 +66,8 @@ TEST(MatrixTest, TestEqualityComparisonReturnsFalseForNonEqualMatrices) {
   EXPECT_NE(matrix, extra_elements_in_row);
   EXPECT_NE(matrix, missing_elements_in_row);
 }
+TEST(MatrixTest, TestThrowsWhenMatrixDoesNotHaveEqualRowLengths) {
+  EXPECT_THROW(Matrix({{1, 2, 3}, {4, 5}}), std::invalid_argument);
+}
+
 }  // namespace
