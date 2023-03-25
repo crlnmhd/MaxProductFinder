@@ -2,10 +2,12 @@
 
 #include <algorithm>
 #include <cstddef>
+#include <functional>
 #include <iterator>
 #include <numeric>
 #include <optional>
 #include <stdexcept>
+#include <vector>
 
 #include "matrix_parser.h"
 

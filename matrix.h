@@ -1,12 +1,12 @@
+#if !defined(MATRIX_H_)
+#define MATRIX_H_
+
 #include <algorithm>
 #include <cstddef>
 #include <iterator>
 #include <map>
 #include <optional>
 #include <stdexcept>
-#if !defined(MATRIX_H_)
-#define MATRIX_H_
-
 #include <vector>
 
 namespace matrix {

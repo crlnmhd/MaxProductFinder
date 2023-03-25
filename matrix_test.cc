@@ -4,8 +4,6 @@
 
 #include <stdexcept>
 
-#include "gtest/gtest.h"
-
 namespace {
 TEST(MatrixTest, TestGetElementsFromTheOrigin) {
   Matrix matrix{{{1, 2, 3, 4}, {5, 6, 7, 8}}};
@@ -53,7 +51,7 @@ TEST(MatrixTest, TestReturnsNulloptWhenOutOfBounds) {
       matrix.get_elements_in_direction(origin, 4, matrix::Direction::Down));
   EXPECT_FALSE(matrix.get_elements_in_direction(
       origin, 4, matrix::Direction::DownAndRight));
-};
+}
 
 TEST(MatrixTest, TestEqualityComparisonReturnsTrueForEqualMatrices) {
   Matrix matrix{{{0, 1, 2, 3}, {4, 5, 6, 7}}};
