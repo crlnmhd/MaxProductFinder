@@ -70,6 +70,7 @@ class Matrix {
       case matrix::Direction::Down:
         return {0, 1};
     }
+    throw std::runtime_error("Unexpected direction");
   }
   bool matrix_is_valid() {
     for (const auto &row : data) {
