@@ -14,7 +14,7 @@ CXXFLAGS := -std=c++20 \
 					 -Wstrict-overflow \
 					 -lgtest
 
-CLASSES := max_product_finder.cc max_product_finder.cc
+CLASSES := max_product_finder.cc max_product_finder.cc matrix.cc
 UNIT_TESTS := matrix_parser_test.cc max_product_finder_test.cc matrix_test.cc matrix_test.cc
 
 assignment: $(CLASSES) assignment.cc
