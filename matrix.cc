@@ -14,7 +14,7 @@ Matrix::Matrix(std::vector<matrix::Row> vec) : data(vec) {
 
 std::size_t Matrix::num_rows() const { return data.size(); }
 
-std::size_t Matrix::num_elements() const {
+std::size_t Matrix::num_columns() const {
   if (data.size() == 0) {
     return 0;
   } else {

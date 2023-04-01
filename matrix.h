@@ -23,10 +23,10 @@ class Matrix {
   }
   std::size_t num_rows() const;
 
-  std::size_t num_elements() const;
+  std::size_t num_columns() const;
 
   std::optional<std::vector<int>> get_elements_in_direction(
-      matrix::Point position, std::size_t num_elements,
+      matrix::Point position, std::size_t num_columns,
       matrix::Direction direction) const;
 
  private:

@@ -17,11 +17,11 @@ std::optional<int> MaxProductFinder::max_product(
     return {};
   }
   if (matrix.num_rows() > elements_in_order &&
-      matrix.num_elements() < elements_in_order) {
+      matrix.num_columns() < elements_in_order) {
     return {};
   }
   std::optional<int> result{};
-  for (std::size_t x{0}; x < matrix.num_elements(); ++x) {
+  for (std::size_t x{0}; x < matrix.num_columns(); ++x) {
     for (std::size_t y{0}; y < matrix.num_rows(); ++y) {
       std::optional<int> max_from_point =
           from_point({x, y}, matrix, elements_in_order);
