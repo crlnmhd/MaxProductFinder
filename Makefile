@@ -23,4 +23,7 @@ assignment: $(CLASSES) assignment.cc
 tests: $(CLASSES) $(UNIT_TESTS) tests.cc
 	$(CXX) $(CXXFLAGS) $^ -o $@
 
+clean:
+	rm -f assignment tests
+
 
