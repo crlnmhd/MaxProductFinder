@@ -39,11 +39,12 @@ std::optional<int> MaxProductFinder::from_point(
     const matrix::Point &point, const Matrix &matrix,
     const std::size_t num_elements) {
   std::vector<int> candidates{};
-  const matrix::Direction directions[] = {matrix::Direction::Right,
-                                          matrix::Direction::Down,
-                                          matrix::Direction::DownAndRight};
 
-  for (const auto direction : directions) {
+  using matrix::Direction;
+
+  for (const auto direction :
+       {Direction::Right, Direction::Down, Direction::DownAndRight,
+        Direction::DownAndLeft}) {
     const std::optional<std::vector<int>> elements =
         matrix.get_elements_in_direction(point, num_elements, direction);
     if (elements.has_value()) {

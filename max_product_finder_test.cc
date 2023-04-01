@@ -28,9 +28,16 @@ TEST(MaxProductFinder, FindsMaxProductInMatrix) {
   Matrix matrix{{{1, 2, 3, 0}, {1, 2, 3, 5}, {0, 1, 0, 99}}};
   EXPECT_EQ(max_product_finder.max_product(matrix, 4),
             1 * 2 * 3 * 5);  // middle row
-  EXPECT_EQ(max_product_finder.max_product(matrix, 3), 2 * 3 * 99);  // diagonal
-  EXPECT_EQ(max_product_finder.max_product(matrix, 2), 5 * 99);      // down
-  EXPECT_EQ(max_product_finder.max_product(matrix, 1), 99);          // largest
+  EXPECT_EQ(max_product_finder.max_product(matrix, 3),
+            2 * 3 * 99);  // right diagonal
+  EXPECT_EQ(max_product_finder.max_product(matrix, 2), 5 * 99);  // down
+  EXPECT_EQ(max_product_finder.max_product(matrix, 1), 99);      // largest
+}
+TEST(MaxProductFinder, FindsMaxProductInLeftDiagonalOfMatrix) {
+  MaxProductFinder max_product_finder;
+  Matrix matrix{{{1, 2, 99, 0}, {1, 99, 3, 5}, {99, 1, 0, 99}}};
+  EXPECT_EQ(max_product_finder.max_product(matrix, 3),
+            99 * 99 * 99);  // left diagonal
 }
 
 }  // namespace
